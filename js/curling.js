@@ -23,12 +23,14 @@ function runSync ()  {
         type: 'GET',
         url: ele[1].value + m,
         processData: false,
+        cache: true,
+        jsonp: false,
         dataType: 'text', // data type expected from server
-        success: function (data) {
-            $(".form-control")[0].append(data);
+        success: function (XMLHttpRequest, textStatus) {
+            $(".form-control")[0].append(textStatus+'\n');
         },
-        error: function () {
-            $(".form-control")[0].append(data);
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            $(".form-control")[0].append($.timeStamp+'\n');
         },
     });
     return false;
