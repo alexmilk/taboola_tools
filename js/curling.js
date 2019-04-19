@@ -27,10 +27,10 @@ function runSync ()  {
         jsonp: false,
         dataType: 'text', // data type expected from server
         success: function (XMLHttpRequest, textStatus) {
-            $(".form-control")[0].append(textStatus+'\n');
+            $(".form-control")[0].append($.url+'success\n');
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            $(".form-control")[0].append($.timeStamp+'\n');
+            $(".form-control")[0].append($.url+' error\n');
         },
     });
     return false;

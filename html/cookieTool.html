@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="../js/curling.js"></script>
+    <meta charset="UTF-8">
+    <title>Taboola - Cookie Sync Tester</title>
+</head>
+<body>
+<!--Top nav bad-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <img src="../img/taboola_logo.png"
+         style="width: 45px; display: inline-block; vertical-align: sub; padding-top: 5px; padding-left: 5px; margin-left: 4px; margin-bottom: 2px;"><span style="font-size: xx-large;display:;margin-left: 11px;vertical-align: text-bottom;color: #b3b3b3;">|</span>
+    <h2 style="width: 700px; font-size: large; display: inline-block; margin-left: 5px; vertical-align: text-bottom; color: #164999">
+        Taboola - Cookie Sync Tester</h2>
+    <a href="../index.html"><button type="button" class="btn btn-primary" style="float: right !important;display: inline-block !important;vertical-align: bottom !important;margin-top: 7px !important;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+    </button></a>
+</nav>
+<!--Center content -->
+<div id="home" style="width: 1400px; margin: auto;">
+    <textarea id="result" style="width:1000px; height:500px; float: none; margin: auto;" placeholder="Curl status"
+              class="form-control"></textarea>
+    <br>
+    <form class="navbar-form" style="padding: 0px; margin: auto; width: 1000px;">
+        <div class="input-group" style="z-index: 0;">
+            <input type="text" class="form-control" id="endpointInput" placeholder="Cookie Sync URL"
+                   style="width: 450px !important;">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" onclick="runInt();return false;">
+                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <input type="text" class="form-control" id="multiplier" placeholder="Repeat Amount"
+               style="width: 150px !important;">
+        <input type="text" class="form-control" id="interval" placeholder="Repeat Interval(ms)"
+               style="width: 150px !important;">
+    </form>
+    <!-- Single button -->
+    <div style="clear: both;"></div>
+</div>
+</body>
+</html>
+
