@@ -29,13 +29,25 @@ function runSync() {
         url: ele[1].value + m,
         processData: false,
         cache: true,
-        jsonp: false,
-        dataType: 'text', // data type expected from server
-        success: function (XMLHttpRequest, textStatus) {
-            $(".form-control")[0].append($.url + 'success\n');
+        success: function (xhr, exception) {
+            $(".form-control")[0].append(xhr.readyState+' success' + '\n');
         },
-        error: function (xhr, textStatus, err) {
-            $(".form-control")[0].append($.url + ' error\n');
+        error: function (xhr, exception) {
+            $(".form-control")[0].append(xhr.statusText+' unsuccessful' + '\n');
+            if( xhr.status === 0)
+                console.log('Error : ' + xhr.status + ' You are not connected.');
+            else if( xhr.status == "201")
+                console.log('Error : ' + xhr.status + '\nServer error.');
+            else if( xhr.status == "404")
+                console.log('Error : ' + xhr.status + '\nPage note found');
+            else if( xhr.status == "500")
+                console.log(' Internal Server Error [500].');
+            else if (exception === 'parsererror')
+                console.log('Error : ' + xhr.status + '\nImpossible to parse result.');
+            else if (exception === 'timeout')
+                console.log('Error : ' + xhr.status + '\nRequest timeout.');
+            else
+                console.log('Error .\n' + xhr.responseText);
         },
     });
     return false;
