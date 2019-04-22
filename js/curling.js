@@ -4,8 +4,11 @@
 //The MIT License                                            ||
 //+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-const ele = document.getElementsByClassName('form-control');function runInt() {
+const ele = document.getElementsByClassName('form-control');
+
+function runInt() {
     let ss = 0, howManyTimes = ele[2].value;
+
     function f() {
         runSync();
         ss++;
@@ -14,9 +17,11 @@ const ele = document.getElementsByClassName('form-control');function runInt() {
         }
     }
 
-    f();return false;
+    f();
+    return false;
 }
-function runSync ()  {
+
+function runSync() {
     let r = [10000, 20000];
     let m = Math.floor(Math.random() * (+r[1] - +r[0])) + +r[0];
     $.ajax({
@@ -27,10 +32,10 @@ function runSync ()  {
         jsonp: false,
         dataType: 'text', // data type expected from server
         success: function (XMLHttpRequest, textStatus) {
-            $(".form-control")[0].append($.url+'success\n');
+            $(".form-control")[0].append($.url + 'success\n');
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            $(".form-control")[0].append($.url+' error\n');
+        error: function (xhr, textStatus, err) {
+            $(".form-control")[0].append($.url + ' error\n');
         },
     });
     return false;
