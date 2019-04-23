@@ -18,6 +18,23 @@
     <link rel='shortcut icon' type='image/png' href='img/favicon.png'/>
     <script src="../js/curling.js"></script>
     <meta charset="UTF-8">
+    <script type="text/javascript">
+        window._taboola = window._taboola || [];
+        _taboola.push({article:'auto'});
+        !function (e, f, u, i) {
+            if (!document.getElementById(i)){
+                e.async = 1;
+                e.src = u;
+                e.id = i;
+                f.parentNode.insertBefore(e, f);
+            }
+        }(document.createElement('script'),
+            document.getElementsByTagName('script')[0],
+            '//cdn.taboola.com/libtrc/betterbytheminute/loader.js',
+            'tb_loader_script');
+        if(window.performance && typeof window.performance.mark == 'function')
+        {window.performance.mark('tbl_ic');}
+    </script>
     <title>Taboola - ADM Object Tester</title>
 </head>
 
@@ -61,12 +78,22 @@
             <div class="panel-body;" style="padding: 5px">
                 <textarea
                         style="width: 100%; height: 200px; resize: none; border:solid 1px gainsboro; background-color: #dddddd"></textarea>
-                <button type="button" class="btn btn-primary" style="float: right; margin: 0px">Apply</button>
+                <button type="button" class="btn btn-primary" style="float: right; margin: 0px; bottom: 0px; margin-top: 128px">Apply</button>
             </div>
         </div>
     </div>
 </div>
 </div>
+<div id="taboola-below-article-thumbnails"></div>
+<script type="text/javascript">
+    window._taboola = window._taboola || [];
+    _taboola.push({
+        mode: 'thumbnails-feed-ac',
+        container: 'taboola-below-article-thumbnails',
+        placement: 'Below Article Thumbnails',
+        target_type: 'mix'
+    });
+</script>
 <!-- Single button -->
 <div style="clear: both;"></div>
 <div id="footer">
@@ -83,5 +110,9 @@
     </p>
 </div>
 </div>
+<script type="text/javascript">
+    window._taboola = window._taboola || [];
+    _taboola.push({flush: true});
+</script>
 </body>
 </html>

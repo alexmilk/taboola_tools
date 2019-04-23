@@ -8,21 +8,21 @@
 <head>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link href="../css/styles.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel='shortcut icon' type='image/png' href='img/favicon.png'/>
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet">
+    <link href='img/favicon.png' rel='shortcut icon' type='image/png'/>
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" rel="stylesheet">
     <script src="../js/curling.js"></script>
     <meta charset="UTF-8">
     <title>Taboola - Cookie Sync Tester</title>
 </head>
 <body>
 <script>
-    $( document ).ready(function() {
+    $(document).ready(function () {
         $("#controls").slideDown(300)
     })
 </script>
@@ -34,33 +34,37 @@
     <h2 style="width: 700px; font-size: large; display: inline-block; margin-left: 5px; vertical-align: text-bottom; color: #164999">
         Taboola - Cookie Sync Tester</h2>
     <a href="../index.html">
-        <button type="button" class="btn btn-primary"
-                style="float: right !important;display: inline-block !important;vertical-align: bottom !important;margin-top: 7px !important;">
-            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        <button class="btn btn-primary" style="float: right !important;display: inline-block !important;vertical-align: bottom !important;margin-top: 7px !important;"
+                type="button">
+            <span aria-hidden="true" class="glyphicon glyphicon-home"></span>
         </button>
     </a>
 </nav>
 <!--Center content -->
 <div id="home" style="width: 1400px;margin: auto;grid-template-columns: 500px 500px;grid-template-rows: 470px 120px;">
-    <textarea id="result" style="width:1000px; height:500px; float: none; margin: auto;" placeholder="Curl status" class="form-control"></textarea>
+    <textarea class="form-control" id="result" placeholder="Curl status"
+              style="width:1000px; height:500px; float: none; margin: auto;"></textarea>
     <br>
 </div>
 <div id="controls" style="width: 1400px;margin: auto; display: none">
     <form class="navbar-form" style="padding: 0px; margin: auto; width: 1000px;">
         <div class="input-group" style="z-index: 0;">
-            <input type="text" class="form-control" id="endpointInput" placeholder="Cookie Sync URL" style="width: 450px !important;">
+            <input class="form-control" id="endpointInput" placeholder="Cookie Sync URL" style="width: 450px !important;"
+                   type="text">
             <div class="input-group-btn">
-                <button class="btn btn-default" type="submit" onclick="runInt();return false;">
-                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                <button class="btn btn-default" onclick="runInt();return false;" type="submit">
+                    <span aria-hidden="true" class="glyphicon glyphicon-play"></span>
                 </button>
             </div>
         </div>
-        <input type="text" class="form-control" id="multiplier" placeholder="Repeat Amount" style="width: 150px !important;">
-        <input type="text" class="form-control" id="interval" placeholder="Repeat Interval(ms)" style="width: 150px !important;">
+        <input class="form-control" id="multiplier" placeholder="Repeat Amount" style="width: 150px !important;"
+               type="text">
+        <input class="form-control" id="interval" placeholder="Repeat Interval(ms)" style="width: 150px !important;"
+               type="text">
     </form>
 </div>
-    <!-- Single button -->
-    <div style="clear: both;"></div>
+<!-- Single button -->
+<div style="clear: both;"></div>
 
 
 <div id="footer">

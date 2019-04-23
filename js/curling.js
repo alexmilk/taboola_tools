@@ -26,6 +26,7 @@ function runSync() {
     let m = Math.floor(Math.random() * (+r[1] - +r[0])) + +r[0];
     $.ajax({
         type: 'GET',
+        crossOrigin: true,
         url: ele[1].value + m,
         processData: false,
         cache: true,
@@ -33,7 +34,7 @@ function runSync() {
             $(".form-control")[0].append(ele[1].value+m+' - Finished Successful' + '\n');
         },
         error: function (xhr, exception) {
-            $(".form-control")[0].append(ele[1].value+m+' - Finished with CORS Errors - ' + xhr.status + '\n');
+            $(".form-control")[0].append(ele[1].value+m+' - Finished but with CORS Errors - ' + xhr.status + '\n');
             if( xhr.status === 0)
                 console.log('Error : ' + xhr.status + ' You are not connected.');
             else if( xhr.status == "201")
