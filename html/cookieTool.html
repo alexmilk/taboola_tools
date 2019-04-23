@@ -21,6 +21,11 @@
     <title>Taboola - Cookie Sync Tester</title>
 </head>
 <body>
+<script>
+    $( document ).ready(function() {
+        $("#controls").slideDown(300)
+    })
+</script>
 <!--Top nav bad-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <img src="../img/taboola_logo.png"
@@ -36,29 +41,28 @@
     </a>
 </nav>
 <!--Center content -->
-<div id="home" style="width: 1400px; margin: auto;">
-    <textarea id="result" style="width:1000px; height:500px; float: none; margin: auto;" placeholder="Curl status"
-              class="form-control"></textarea>
+<div id="home" style="width: 1400px;margin: auto;grid-template-columns: 500px 500px;grid-template-rows: 470px 120px;">
+    <textarea id="result" style="width:1000px; height:500px; float: none; margin: auto;" placeholder="Curl status" class="form-control"></textarea>
     <br>
+</div>
+<div id="controls" style="width: 1400px;margin: auto; display: none">
     <form class="navbar-form" style="padding: 0px; margin: auto; width: 1000px;">
         <div class="input-group" style="z-index: 0;">
-            <input type="text" class="form-control" id="endpointInput" placeholder="Cookie Sync URL"
-                   style="width: 450px !important;">
+            <input type="text" class="form-control" id="endpointInput" placeholder="Cookie Sync URL" style="width: 450px !important;">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit" onclick="runInt();return false;">
                     <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
                 </button>
             </div>
         </div>
-        <input type="text" class="form-control" id="multiplier" placeholder="Repeat Amount"
-               style="width: 150px !important;">
-        <input type="text" class="form-control" id="interval" placeholder="Repeat Interval(ms)"
-               style="width: 150px !important;">
+        <input type="text" class="form-control" id="multiplier" placeholder="Repeat Amount" style="width: 150px !important;">
+        <input type="text" class="form-control" id="interval" placeholder="Repeat Interval(ms)" style="width: 150px !important;">
     </form>
+</div>
     <!-- Single button -->
     <div style="clear: both;"></div>
 
-</div>
+
 <div id="footer">
     <p id="footer p" style="margin: auto !important;">&#169; 2019 Alex Milkis | Taboola •
         <a href="https://github.com/alexmilk">

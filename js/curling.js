@@ -30,10 +30,10 @@ function runSync() {
         processData: false,
         cache: true,
         success: function (xhr, exception) {
-            $(".form-control")[0].append(xhr.readyState+' success' + '\n');
+            $(".form-control")[0].append(ele[1].value+m+' - Finished Successful' + '\n');
         },
         error: function (xhr, exception) {
-            $(".form-control")[0].append(xhr.statusText+' unsuccessful' + '\n');
+            $(".form-control")[0].append(ele[1].value+m+' - Finished with CORS Errors - ' + xhr.status + '\n');
             if( xhr.status === 0)
                 console.log('Error : ' + xhr.status + ' You are not connected.');
             else if( xhr.status == "201")
