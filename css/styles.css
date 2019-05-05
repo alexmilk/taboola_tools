@@ -5,6 +5,7 @@ body {
     padding-top: 75px;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff', GradientType=0); /* IE6-9 */
     background-attachment: fixed;
+    overflow: auto;
 
 }
 
@@ -142,7 +143,7 @@ body {
     text-align: center;
     padding-bottom: 7px;
     position: fixed;
-    z-index: -100;
+    z-index: 100;
 }
 
 #footer p {
