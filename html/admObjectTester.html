@@ -6,6 +6,23 @@
 <!-- MIT Licensed. http://www.opensource.org/licenses/mit-license.php -->
 <!-- http://taboola.com -->
 <head>
+    <script type="text/javascript">
+        window._taboola = window._taboola || [];
+        _taboola.push({article:'auto'});
+        !function (e, f, u, i) {
+            if (!document.getElementById(i)){
+                e.async = 1;
+                e.src = u;
+                e.id = i;
+                f.parentNode.insertBefore(e, f);
+            }
+        }(document.createElement('script'),
+            document.getElementsByTagName('script')[0],
+            '//cdn.taboola.com/libtrc/taboola-display-sc-aol/loader.js',
+            'tb_loader_script');
+        if(window.performance && typeof window.performance.mark == 'function')
+        {window.performance.mark('tbl_ic');}
+    </script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="../js/angular.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css">
@@ -70,31 +87,25 @@
     </div>
     <div id="separator" style="height: 300px; width: 30px; float: left; display: contents">
         <span class="glyphicon glyphicon-resize-horizontal" style="float: left;display: inline-block;vertical-align: middle;width: 20px;height: 300px;/* text-align: center; */margin: 10px;font-size: x-large;"></span></div>
-    <div id="content_2" style="width: 60%;display: block;height: fit-content;float: left;">
-        <div class="panel panel-default" style="width: 100%;height: 343px;">
+    <div id="content_2" style="width: 60%;display: block;height: 423px;float: left;">
+        <div class="panel panel-default" style="width: 100%;height: 423px;">
             <div class="panel-heading">
                 <h3 class="panel-title">ADM Object Editor</h3>
             </div>
             <div class="panel-body;" style="padding: 5px;height: 350;">
-                <label for="text1"></label><textarea id="text1" style="width: 100%;height: 255px;resize: none;border:solid 1px gainsboro;background-color: #dddddd;"></textarea>
+                <label for="text1"></label><textarea id="text1" style="width: 100%;height: 334px;resize: none;border:solid 1px gainsboro;background-color: #dddddd;"></textarea>
                 <button type="button" class="btn btn-primary" style="float: right;margin: 0px;bottom: 0px;margin-top: 0px;">Apply</button>
             </div>
         </div>
     </div>
 </div>
-<div id="taboola-below-article-thumbnails" style="width: 1000px; margin: auto; display: block;
-    padding: 4px;
-    margin-bottom: 20px;
-    line-height: 1.42857143;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;"></div>
+<div id="taboola-right-rail-thumbnails-rbox_280x20"></div>
 <script type="text/javascript">
     window._taboola = window._taboola || [];
     _taboola.push({
-        mode: 'thumbnails-feed-ac',
-        container: 'taboola-below-article-thumbnails',
-        placement: 'Below Article Thumbnails',
+        mode: 'Rbox_280x20_1x1',
+        container: 'taboola-right-rail-thumbnails-rbox_280x20',
+        placement: 'Right Rail Thumbnails-Rbox_280x20',
         target_type: 'mix'
     });
 </script>
@@ -117,5 +128,6 @@
     window._taboola = window._taboola || [];
     _taboola.push({flush: true});
 </script>
+
 </body>
 </html>
