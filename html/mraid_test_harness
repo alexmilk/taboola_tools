@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MRAID Test Harness</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f8f8;
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #ad-container {
+      width: 320px; 
+      height: 480px; 
+      border: 2px solid #333;
+      margin: 20px;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: white;
+    }
+    #log {
+      width: 90%;
+      height: 200px;
+      overflow-y: auto;
+      background: black;
+      color: lime;
+      padding: 8px;
+      font-family: monospace;
+    }
+    textarea {
+      width: 90%;
+      height: 200px;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+    button {
+      padding: 8px 12px;
+      margin: 4px;
+      border: none;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    button:hover {
+      background: #555;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>MRAID Test Harness</h2>
+
+  <!-- Paste ADM / HTML creative -->
+  <textarea id="creativeHtml" placeholder="Paste your ADM / HTML creative here"></textarea><br>
+  <button onclick="loadCreative()">Render Creative</button>
+
+  <div id="ad-container">
+    <iframe id="creativeFrame"></iframe>
+  </div>
+
+  <h3>Simulate MRAID Events</h3>
+  <div class="controls">
+    <button onclick="fireReady()">Fire ready</button>
+    <button onclick="fireViewable(true)">Viewable = true</button>
+    <button onclick="fireViewable(false)">Viewable = false</button>
+    <button onclick="fireState('default')">State = default</button>
+    <button onclick="fireState('expanded')">State = expanded</button>
+    <button onclick="fireState('hidden')">State = hidden</button>
+  </div>
+
+  <h3>Debug Log</h3>
+  <div id="log"></div>
+
+  <script>
+    // Logger helper
+    function log(msg) {
+      console.log(msg);
+      const logBox = document.getElementById("log");
+      logBox.innerHTML += msg + "<br>";
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    // --- Stub MRAID if not injected by SDK ---
+    if (typeof window.mraid === "undefined") {
+      const listeners = {};
+      window.mraid = {
+        getState: () => window._mraidState || "default",
+        isViewable: () => window._mraidViewable || false,
+        getPlacementType: () => "inline",
+        open: (url) => log("MRAID.open called with: " + url),
+        close: () => log("MRAID.close called"),
+        expand: () => log("MRAID.expand called"),
+        resize: () => log("MRAID.resize called"),
+        playVideo: (url) => log("MRAID.playVideo called with: " + url),
+        addEventListener: (ev, fn) => {
+          if (!listeners[ev]) listeners[ev] = [];
+          listeners[ev].push(fn);
+          log("Listener added for: " + ev);
+        }
+      };
+      // Simple dispatcher
+      window._fireMraidEvent = function(ev, ...args) {
+        if (listeners[ev]) {
+          listeners[ev].forEach(fn => fn.apply(null, args));
+        }
+      };
+      log("⚠️ Stub mraid.js injected");
+    }
+
+    // --- Hook into MRAID calls for logging ---
+    (function attachMraidDebugger() {
+      const methods = ["open","close","expand","resize","playVideo","storePicture"];
+      methods.forEach(fn => {
+        if (typeof mraid[fn] === "function") {
+          const orig = mraid[fn];
+          mraid[fn] = function() {
+            log(`📢 MRAID.${fn} called with args: ${JSON.stringify([...arguments])}`);
+            return orig.apply(this, arguments);
+          }
+        }
+      });
+      const events = ["ready","error","stateChange","viewableChange","sizeChange"];
+      events.forEach(ev => {
+        try {
+          mraid.addEventListener(ev, function() {
+            log(`📢 MRAID event fired: ${ev} ${JSON.stringify([...arguments])}`);
+          });
+        } catch(e) {
+          log("Error attaching event: " + ev);
+        }
+      });
+      log("✅ MRAID Debugger attached");
+    })();
+
+    // --- Event simulation functions ---
+    function fireReady() {
+      log("🔧 Simulating ready");
+      _fireMraidEvent("ready");
+    }
+    function fireViewable(val) {
+      window._mraidViewable = val;
+      log("🔧 Simulating viewableChange: " + val);
+      _fireMraidEvent("viewableChange", val);
+    }
+    function fireState(state) {
+      window._mraidState = state;
+      log("🔧 Simulating stateChange: " + state);
+      _fireMraidEvent("stateChange", state);
+    }
+
+    // --- Load creative into iframe ---
+    function loadCreative() {
+      const creativeHtml = document.getElementById("creativeHtml").value;
+      if (!creativeHtml) return alert("Paste creative HTML first.");
+      const iframe = document.getElementById("creativeFrame");
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      doc.open();
+      doc.write(creativeHtml);
+      doc.close();
+      log("🖼️ Creative rendered into iframe");
+    }
+  </script>
+</body>
+</html>
